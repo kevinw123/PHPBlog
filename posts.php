@@ -8,13 +8,13 @@
   if(isset($_GET['category'])){
     $category = $_GET['category'];
     // Create Query
-    $query = "SELECT * FROM posts WHERE category = ".$category;
+    $query = "SELECT * FROM posts WHERE category = ".$category." ORDER BY id DESC";
 
     // Run Query
     $posts = $db->select($query);
   } else {
     // Create Query
-    $query = "SELECT * FROM posts";
+    $query = "SELECT * FROM posts ORDER BY id DESC";
 
     // Run Query
     $posts = $db->select($query);
