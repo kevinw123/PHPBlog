@@ -17,8 +17,8 @@
   $categories = $db->select($query);
 
 ?>
-<form>
-	<div class="form-group" method="post" action="edit_post.php">
+<form method="post" action="edit_post.php">
+	<div class="form-group">
 		<label>Post Title</label>
 		<input  name="title" type="text" class="form-control" placeholder="Enter Title" value="<?php echo $post['title']; ?>">
 	</div>

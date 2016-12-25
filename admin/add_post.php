@@ -1,8 +1,28 @@
 <?php include 'includes/header.php'; ?>
 <?php
-  // Create DB object
-  $db = new Database();
+  	// Create DB object
+  	$db = new Database();
 
+	if(isset($_POST['submit'])){
+		// Assign Variables
+		$title = mysqli_real_escape_string($db->link, $_POST['title']);
+		$body = mysqli_real_escape_string($db->link, $_POST['body']);
+		$category = mysqli_real_escape_string($db->link, $_POST['category']);
+		$author = mysqli_real_escape_string($db->link, $_POST['author']);
+		$tags = mysqli_real_escape_string($db->link, $_POST['tags']);
+
+		// simple validation
+		if($title == '' || $body == '' || $category == '' || $author == ''){
+			// set error
+			$error = 'Please fill out all required fields';
+		} else {
+			$query = "INSERT INTO posts (title, body, category, author, tags) VALUES('$title', '$body', '$category', '$author', '$tags')";
+
+			$insert_row = $db->insert($query);
+		}
+	}
+?>
+<?php
   // Create Query
   $query = "SELECT * FROM categories";
 
@@ -10,8 +30,8 @@
   $categories = $db->select($query);
 
 ?>
-<form>
-	<div class="form-group" method="post" action="add_post.php">
+<form method="post" action="add_post.php">
+	<div class="form-group">
 		<label>Post Title</label>
 		<input  name="title" type="text" class="form-control" placeholder="Enter Title">
 	</div>
@@ -29,7 +49,7 @@
 					$selected = '';
 				}
 				?>
-				<option <?php echo $selected; ?>><?php echo $row['name']; ?></option>
+				<option <?php echo $selected; ?> value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
 			<?php endwhile; ?>
 		</select>
 	</div>
