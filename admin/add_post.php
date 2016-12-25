@@ -1,4 +1,15 @@
 <?php include 'includes/header.php'; ?>
+<?php
+  // Create DB object
+  $db = new Database();
+
+  // Create Query
+  $query = "SELECT * FROM categories";
+
+  // Run Query
+  $categories = $db->select($query);
+
+?>
 <form>
 	<div class="form-group" method="post" action="add_post.php">
 		<label>Post Title</label>
@@ -11,8 +22,15 @@
 	<div class="form-group" method="post" action="add_post.php">
 		<label>Category</label>
 		<select name="category" class="form-control">
-			<option>News</option>
-			<option>Events</option>
+			<?php while($row = $categories->fetch_assoc()) : ?>
+				<?php if($row['id'] == $post['category']){
+					$selected = 'selected';
+				} else {
+					$selected = '';
+				}
+				?>
+				<option <?php echo $selected; ?>><?php echo $row['name']; ?></option>
+			<?php endwhile; ?>
 		</select>
 	</div>
 	<div class="form-group" method="post" action="add_post.php">
