@@ -45,6 +45,12 @@
 	}
 
 ?>
+<?php
+	if(isset($_POST['delete'])){
+		$query = "DELETE FROM posts WHERE id = ".$id;
+		$delete_row = $db->delete($query);
+	}
+?>
 <form method="post" action="edit_post.php?id=<?php echo $id; ?>">
 	<div class="form-group">
 		<label>Post Title</label>
