@@ -5,4 +5,4 @@ define('DB_PASS', '');
 define('DB_NAME', 'phpblog');
 
 
-$site_description = 'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.';
+$site_description = 'This is a blog page where you can keep up to date with PHP news, tutorials and events!';
